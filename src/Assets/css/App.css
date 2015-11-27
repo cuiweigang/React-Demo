@@ -1,0 +1,9 @@
+body {
+    background: url("../images/bind-not.png") no-repeat;
+}
+
+.size {
+    font-size: 24px;
+    display: inline-block;
+    padding: 0 10px;
+}
