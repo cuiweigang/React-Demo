@@ -7,11 +7,10 @@ var Message = React.createClass({
   render: function () {
     return (
         <p>
-          React has been successfully running for<span className='size'>{this.props.seconds}</span>seconds.
+          message zero-{this.props.params.id}
         </p>
     );
   }
 });
 
 export default  Message;
-// module.exports = Message;

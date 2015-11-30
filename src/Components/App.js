@@ -5,20 +5,43 @@
 import React from 'react';
 import '../Assets/css/App.css';
 import ReactDOM from 'react-dom';
-var Message = require("./Message");
+import Message from './Message';
+import Message1 from './Message1'
+import { Router, Route, Link } from 'react-router'
+import Menu from './Menu';
 
 var App = React.createClass({
-  render: function () {
-    var elapsed = Math.round(this.props.elapsed / 100);
-    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
-    return <div><Message seconds={seconds}/></div>;
+  render () {
+    return (
+        <div>
+          <Menu/>
+          {this.props.children}
+        </div>
+    )
   }
 });
 
-var start = new Date().getTime();
-setInterval(function () {
-  ReactDOM.render(
-      <App elapsed={new Date().getTime() - start}/>,
-      document.getElementById('container')
-  );
-}, 1000);
+var router = (
+    <Router>
+      <Route path="/" component={App}>
+        <Route path="m/:id" component={Message}/>
+        <Route path="m1" component={Message1}>
+        </Route>
+      </Route>
+    </Router>
+);
+
+ReactDOM.render(router, document.getElementById('container'));
+
+//var routes = (
+//    <Router>
+//      <Route path="/" component={App}>
+//        <Route path="m" component={Message}/>
+//        <Route path="m1" component={Message1}>
+//        </Route>
+//        <Route path="*" component={App}/>
+//      </Route>
+//    </Router>);
+//
+//ReactDOM.render(routes
+//    , document.body);

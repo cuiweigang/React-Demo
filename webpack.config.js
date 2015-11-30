@@ -12,7 +12,7 @@ module.exports = {
   // 表示输出文件
   output: {
     path: path.join(__dirname, "public", "build", "js"),
-    publicPath: "public/build/js/",
+    publicPath: "build/js",
     filename: "[name].js"
   },
   // We are watching in the gulp.watch, so tell webpack not to watch
@@ -32,5 +32,8 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
-  ]
+  ],
+  target: "web",
+  debug: true,
+  watch: true
 };
