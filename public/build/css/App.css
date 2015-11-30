@@ -1,0 +1,13 @@
+body {
+    background: url("../images/bind-not.png") no-repeat;
+    max-width: 600px;
+    min-width: 320px;
+    height: auto;
+    font-size:1.2em;
+}
+
+.size {
+    font-size: 24px;
+    display: inline-block;
+    padding: 0 10px;
+}

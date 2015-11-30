@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   // 表示入口文件
   entry: {
-    vendors: ['react', 'react-dom'],
+    vendors: ['react', 'react-dom', 'reflux'],
     app: ["./src/Components/App.js"]
   },
 
@@ -18,7 +18,7 @@ module.exports = {
   // We are watching in the gulp.watch, so tell webpack not to watch
   resolve: {
     // Tell webpack to look for required files in bower and node
-    modulesDirectories: ['bower_components', 'node_modules'],
+    modulesDirectories: ['bower_components', 'node_modules']
   },
   module: {
     loaders: [
