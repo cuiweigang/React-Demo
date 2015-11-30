@@ -6,8 +6,12 @@ import React from 'react';
 import '../Assets/css/App.css';
 import ReactDOM from 'react-dom';
 import Message from './Message';
-import Message1 from './Message1'
+import Message1 from './Message1';
 import { Router, Route, Link } from 'react-router'
+import TodoComponent from './RefluxDemo';
+import RefluxDemo2 from './RefluxDemo2';
+import RefluxDemo3 from './RefluxDemo3';
+
 import Menu from './Menu';
 
 var App = React.createClass({
@@ -25,23 +29,12 @@ var router = (
     <Router>
       <Route path="/" component={App}>
         <Route path="m/:id" component={Message}/>
-        <Route path="m1" component={Message1}>
-        </Route>
+        <Route path="m1" component={Message1}/>
+        <Route path="m2" component={TodoComponent}/>
+        <Route path="m3" component={RefluxDemo2}/>
+        <Route path="m4" component={RefluxDemo3}/>
       </Route>
     </Router>
 );
 
 ReactDOM.render(router, document.getElementById('container'));
-
-//var routes = (
-//    <Router>
-//      <Route path="/" component={App}>
-//        <Route path="m" component={Message}/>
-//        <Route path="m1" component={Message1}>
-//        </Route>
-//        <Route path="*" component={App}/>
-//      </Route>
-//    </Router>);
-//
-//ReactDOM.render(routes
-//    , document.body);

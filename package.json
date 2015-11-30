@@ -5,7 +5,9 @@
     "history": "^1.13.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-router": "^1.0.0"
+    "react-router": "^1.0.0",
+    "reflux": "^0.3.0",
+    "superagent": "^1.4.0"
   },
   "scripts": {
     "start": "webpack-dev-server --content-base public/ --host 0.0.0.0 --port 8080",

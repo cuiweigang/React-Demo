@@ -11,6 +11,9 @@ var Menu = React.createClass({
           <Link to="/">首页</Link>
           <Link to="/m/1">消息-1</Link>
           <Link to="/m1">消息-2</Link>
+          <Link to="/m2">Reflux-Action</Link>
+          <Link to="/m3">Reflux-Actions</Link>
+          <Link to="/m4">Reflux-Content</Link>
         </div>
     )
   }
