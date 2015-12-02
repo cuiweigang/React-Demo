@@ -9,7 +9,7 @@ class Info extends React.Component {
   componentDidMount () {}
 
   render () {
-    console.log('info-render', this.props.shopInfo);
+
     if (!this.props.shopInfo || !this.props.shopInfo.shopId) {
       console.log('shopInfo is null');
       return false;

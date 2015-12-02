@@ -21,9 +21,8 @@ var App = React.createClass({
 
 var router = (
     <Router>
-      <Route path="/" component={App}>
-        <Route path="shopInfo" component={Shop}/>
-      </Route>
+      <Route path="/" component={App}/>
+      <Route path="shopInfo" component={Shop}/>
     </Router>
 );
 

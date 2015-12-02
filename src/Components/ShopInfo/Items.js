@@ -3,51 +3,71 @@ import Item from './Item';
 import ShopInfoAction from '../../Actions/ShopInfoAction';
 import ShopInfoStore from '../../Stores/ShopInfoStore';
 
-let that = null;
 class Items extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       data: ShopInfoStore.data
     };
-    this.query=this.props.query;
-    that = this;
+    this.query = this.props.query;
 
-    ShopInfoStore.listen(this.onStatusChange);
+    // 监听事件执行
+    ShopInfoStore.listen(()=> {
+      this.setState({data: ShopInfoStore.data})
+    });
   }
 
-  componentDidMount () {
+  componentDidMount() {
     ShopInfoAction.items(this.query.shopId);
   }
 
-  onStatusChange () {
-    that.setState({data: ShopInfoStore.data});
-  }
+  render() {
 
-  render () {
-    console.log('items=>render', this.state.data);
     let products = this.state.data.product;
-    let items=[];
-    products.items.map(function(item, key) {
-        items.push(<Item key={key} item={item}/>)
+    let items = [];
+    products.items.map(function (item, key) {
+      items.push(<Item key={key} item={item}/>);
     });
 
-    var bottom=(
-      <p className="foot-load">
-      <a href="" className="foot">已经到底部了</a>
-    </p>
-  );
+    let bottom = (
+        <p className="foot-load">
+          <a href="javascript:void(0)" className="foot">已经到底部了</a>
+        </p>
+    );
+
+    let notProducts = (
+        <p className="foot-load">
+          <a href="javascript:void(0)" className="foot">还没有商品上架</a>
+        </p>
+    );
+
+    let nextPage = ()=> {
+      ShopInfoAction.items(this.query.shopId);
+    };
+
+    // 加载更多
+    let more = (
+        <p className="foot-load">
+          <a href="javascript:void(0);" onClick={nextPage} className="more">点击加载更多</a>
+        </p>
+    );
+
+    let showIcon = null;
+    if (products.isNext && items.length <= 0) {
+      showIcon = notProducts;
+    }
+    else if (products.isNext) {
+      showIcon = bottom;
+    }
 
     return (
-      <div className="mini-store-block">
-        <ul className="store-pro-lst">
-          {items}
-        </ul>
-
-        {items.length<=0?bottom:''}
-
-      </div>
-
+        <div className="mini-store-block">
+          <ul className="store-pro-lst">
+            {items}
+          </ul>
+          {!products.isNext ? more : ''}
+          {showIcon}
+        </div>
     )
   }
 }
