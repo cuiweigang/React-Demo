@@ -4,35 +4,29 @@
 import React from 'react';
 import Reflux from 'reflux';
 import superAgent from 'superagent';
+import {Link} from 'react-router';
 
-var TodoActions = Reflux.createActions(
-    [
-      'addItem',
-      'delItem',
-      'title'
-    ]);
-
-var addItem = Reflux.createAction();
+var TodoActions = Reflux.createActions(['addItem', 'delItem', 'title']);
 
 var TodoStore = Reflux.createStore({
   data: {
     title: '数组列表',
     items: [1, 2]
   },
-  init: function () {
+  init: function() {
     this.listenToMany(TodoActions);
   },
-  onAddItem: function () {
+  onAddItem: function() {
     this.data.items.push(1);
     this.onTitle();
     this.trigger();
   },
-  onDelItem: function () {
+  onDelItem: function() {
     this.data.items.shift(1);
     this.onTitle();
     this.trigger();
   },
-  onTitle: function () {
+  onTitle: function() {
     this.data.title = "数组列表({0})".replace('{0}', this.data.items.length);
     this.trigger();
   }
@@ -40,27 +34,29 @@ var TodoStore = Reflux.createStore({
 
 var Demo = React.createClass({
   mixins: [Reflux.listenTo(TodoStore, 'onStatusChange')],
-  getInitialState: function () {
+  getInitialState: function() {
     return {data: TodoStore.data};
   },
-  onStatusChange: function () {
+  onStatusChange: function() {
     this.setState({data: TodoStore.data});
   },
-  render: function () {
+  render: function() {
     return (
-        <div>
-          <p>{this.state.data.title}</p>
-          {
-            this.state.data.items.map(function (item, key) {
-              return <p key={key}>{item}</p>
-            })
-          }
-          <input type="button" onClick={TodoActions.addItem} value='add'/>
-          <input type="button" onClick={TodoActions.delItem} value='del'/>
-          <input type="button" onClick={TodoActions.title} value='title'/>
-        </div>
+      <div>
+        <p>{this.state.data.title}</p>
+        {this.state.data.items.map(function(item, key) {
+          return <p key={key}>
+            <Link to='m4'>{item}</Link>
+          </p>
+        })
+}
+        <input type="button" onClick={TodoActions.addItem} value='add'/>
+        <input type="button" onClick={TodoActions.addItem} value='add'/>
+        <input type="button" onClick={TodoActions.delItem} value='del'/>
+        <input type="button" onClick={TodoActions.title} value='title'/>
+      </div>
     );
   }
 });
 
-export default  Demo;
+export default Demo;

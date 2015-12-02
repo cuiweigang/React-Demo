@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   // 表示入口文件
   entry: {
-    vendors: ['react', 'react-dom', 'reflux'],
+    vendors: ['react', 'react-dom', 'reflux','babel-polyfill'],
     app: ["./src/Components/App.js"]
   },
 
@@ -26,7 +26,7 @@ module.exports = {
       {test: /\.gif/, loader: "url-loader?limit=10000&minetype=image/gif"},
       {test: /\.jpg/, loader: "url-loader?limit=10000&minetype=image/jpg"},
       {test: /\.png/, loader: "url-loader?limit=20000&minetype=image/png"},
-      {test: /\.js?$/, exclude: /node_modules/, loaders: ['babel']}
+      {test: /\.js?$/, exclude: /node_modules/, loaders: ['babel-loader']}
     ],
     noParse: /\.min\.js/
   },

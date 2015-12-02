@@ -28,12 +28,15 @@ var TodoStore = Reflux.createStore({
 
 var Message = React.createClass({
   render: function () {
+    console.log(this.props);
+    console.log(this.props.location.query.id);
     return (
         <p>
           message zero-{this.props.params.id}
+          <input type="button" onClick={this.props.history.goBack} value="goBack"/>
         </p>
     );
   }
 });
 
-export default  Message;
+export default Message;
