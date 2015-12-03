@@ -6,23 +6,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link } from 'react-router'
 import Shop from './ShopInfo/Shop';
-import Header from './ShopInfo/Header';
 
-var App = React.createClass({
+import content from './Content';
+
+let App = React.createClass({
   render () {
+    console.log('react');
     return (
-        <section className="mini-page">
-          <Header/>
+        <div>
           {this.props.children}
-        </section>
+        </div>
     )
   }
 });
 
-var router = (
+let router = (
     <Router>
-      <Route path="/" component={App}/>
-      <Route path="shopInfo" component={Shop}/>
+      <Route path="/" component={App}>
+        <Route path="shopInfo" component={Shop}/>
+      </Route>
     </Router>
 );
 

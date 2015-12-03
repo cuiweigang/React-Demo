@@ -18,7 +18,25 @@ class Items extends React.Component {
   }
 
   componentDidMount() {
+    this.autoLoading();
     ShopInfoAction.items(this.query.shopId);
+  }
+
+  /**
+   * 自动加载下一页
+   */
+  autoLoading() {
+    window.onscroll = ()=> {
+      var scrollTop = parseInt(document.body.scrollTop); //被卷上去的高度
+      var scrollHeight = parseInt(document.body.scrollHeight); //整个文档的高度
+      var availHeight = parseInt(window.screen.availHeight); //屏幕工作区的高度
+
+      //当距离底部小于一屏高度时，自动加载下一页
+      if (scrollHeight - (scrollTop + availHeight) < availHeight) {
+        console.log('加载下一页');
+        ShopInfoAction.items(this.query.shopId);
+      }
+    };
   }
 
   render() {
@@ -72,4 +90,6 @@ class Items extends React.Component {
   }
 }
 
-export default Items;
+export
+default
+Items;

@@ -5,6 +5,8 @@ import Items from './items';
 import Reflux from 'reflux';
 import ShopInfoAction from '../../Actions/ShopInfoAction';
 import ShopInfoStore from '../../Stores/ShopInfoStore';
+import Content from '../Content';
+import Header from './Header';
 
 class Shop extends React.Component {
   constructor(props) {
@@ -27,14 +29,16 @@ class Shop extends React.Component {
 
   render() {
     return (
-        <section className="mini-container">
-          <Info shopInfo={this.state.data.shopInfo}/>
-          {this.state.data.shopInfo.desc
-              ? <Desc desc={this.state.data.shopInfo.desc}/>
-              : ''}
-          <Items query={this.query}/>
+        <section className="mini-page">
+          <Header title={'测试'}/>
+          <section className="mini-container">
+            <Info shopInfo={this.state.data.shopInfo}/>
+            {this.state.data.shopInfo.desc ?
+                <Desc desc={this.state.data.shopInfo.desc}/> : ''}
+            <Items query={this.query}/>
+          </section>
         </section>
-    )
+    );
   }
 }
 export default Shop;
